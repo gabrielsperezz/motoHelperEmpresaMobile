@@ -1,0 +1,35 @@
+{
+  "name": "ion-gallery",
+  "description": "Ionic gallery directive",
+  "main": "dist/ion-gallery.min.js",
+  "keywords": [
+    "ionic",
+    "gallery",
+    "slider"
+  ],
+  "authors": [
+    "Pedro Abreu <pmig.abreu@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-mocks": "~1.4.0",
+    "ionic": "~1.1.0"
+  },
+  "homepage": "https://github.com/pedroabreu/ion-gallery",
+  "_release": "0.2",
+  "_resolution": {
+    "type": "tag",
+    "tag": "0.2",
+    "commit": "9cf6711325815c89d82a4102673afb3501673721"
+  },
+  "_source": "https://github.com/pedroabreu/ion-gallery.git",
+  "_target": "0.2",
+  "_originalSource": "ion-gallery"
+}

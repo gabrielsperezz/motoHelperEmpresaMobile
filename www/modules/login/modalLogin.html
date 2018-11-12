@@ -1,0 +1,45 @@
+<ion-view>
+    <ion-header-bar class="bar-custom">
+        <button class="button button-icon icon ion-arrow-left-c icon-right" ng-click="modal.hide()"></button>
+        <h1 class="title">Ainda não é cadastrado</h1>
+    </ion-header-bar>
+    <ion-content style="background-color: rgb(56,56,56)">
+        <form class="card" style="background-color: rgb(43,43,43); margin-top: 20%;">
+            <div class="login__logo">
+                <i class="ion-person"></i>
+            </div>
+            <div class="list padding login-box">
+
+                <p class="color-white text-informa-login">Cadastrar novo Usuario</p>
+
+                <form name="cadastro_usuario">
+
+                    <label class="item item-input item-icon-right">
+                        <i class="icon ion-document-text"></i>
+                        <input type="text" placeholder="Nome" ng-model="novousuario.nome">
+                    </label>
+
+
+                    <label class="item item-input item-icon-right">
+                        <i class="icon ion-person"></i>
+                        <input type="text" placeholder="Usuario" ng-model="novousuario.login">
+                    </label>
+
+                    <label class="item item-input item-icon-right">
+                        <i class="icon ion-email"></i>
+                        <input type="email" placeholder="Email" ng-model="novousuario.email">
+                    </label>
+
+                    <label class="item item-input item-icon-right">
+                        <i class="icon ion-locked"></i>
+                        <input type="password" placeholder="Senha" ng-model="novousuario.senha">
+                    </label>
+
+
+                    <button class="button button-block button-custom buttonRadioLogin" ng-click="cadastrarUsuario(novousuario)">Cadastrar</button>
+                </form>
+            </div>
+        </form>
+    </ion-content>
+
+</ion-view>

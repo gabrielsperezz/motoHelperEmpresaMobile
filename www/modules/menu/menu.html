@@ -1,0 +1,71 @@
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-custom">
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+                </button>
+            </ion-nav-buttons>
+            <ion-nav-buttons side="right">
+                <button class="button button-icon button-clear ion-android-checkmark-circle" menu-toggle="right">
+                </button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left">
+        <ion-header-bar class="bar-custom">
+            <h1 class="title">Menu</h1>
+        </ion-header-bar>
+        <ion-content>
+            <ion-list>
+                <a class="item item-menu item-icon-left " menu-close ui-sref="app.home" ui-sref-active="current">
+                    <i class="icon ion-ios-home "></i> Tela inicial
+                </a>
+                <a class="item item-menu item-icon-left" menu-close ui-sref="app.rastreados" ui-sref-active="current">
+                    <i class=" icon fa fa-motorcycle "></i>Corridas
+                </a>
+                <a class="item item-menu item-icon-left" menu-close ui-sref-active="current">
+                    <i class=" icon ion-ios-information-outline"></i> Sobre
+                </a>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+
+
+    <ion-side-menu side="right">
+
+        <ion-header-bar class="bar-dark">
+            <h1 class="title">Histórico de Corridas</h1>
+            <button class="button pull-right" >
+                <i class="icon ion-funnel"></i>
+            </button>
+
+        </ion-header-bar>
+
+        <ion-content>
+            <ion-refresher  pulling-text="{{'atualizando' | translate}}" on-refresh="menuDoRefresh()">
+            </ion-refresher>
+            <div ng-show="eventos && eventos.length < 1">
+                <div class="text-center text-informa-login gray" > {{'nao_ha_eventos_para_mostrar' | translate}}</div>
+            </div>
+
+            <ion-list>
+                <div collection-repeat="corrida in corridas" item-height="72" >
+                    <div class="row item item-text-wrap" style="height:70px;overflow:hidden">
+                        <div class="col-15 padding text-center">
+                            <i class="ion-checkmark-round font-sm"></i>
+                        </div>
+                        <div class="col-85">
+                            <div class="center grey font-xs">{{ corrida.data }}
+                            </div>
+                            <label>
+                                {{corrida.mensagem}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

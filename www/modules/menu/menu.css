@@ -1,0 +1,20 @@
+.icone-evento{
+	width: 100%;
+	height: auto;
+}
+.borda{
+	border-top: solid;
+	color: grey;
+	border-top-width: 1px;
+}
+.item-radio .radio-content .item-content {
+  padding: 10px 44px 10px 16px;
+}
+.item-radio .radio-content .radio-icon {
+  padding: 8px 14px 8px 14px;
+  font-size: 1.3em;  
+}
+.platform-android .overflow-scroll > .scroll.overscroll {
+  right: auto;
+  left: auto;
+}

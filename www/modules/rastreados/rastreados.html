@@ -1,0 +1,80 @@
+<ion-view view-title="{{ 'rastreados_title' | translate }}">
+    <ion-content>
+        <div id="leaflet-map"></div>
+        <div class="box_info_rastreados" ng-show="mostrarIformacoes">
+            <div class="row">
+                <div class="col">
+                    <div style=" border-bottom-style: solid; margin-bottom: -6px; border-bottom-width: 1px;">
+                        <p style="text-align:center; margin: 0">{{veiculoAtual.descricao}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="button-bar">
+                        <a class="button button-small icon-left ion-search" ng-click="buscarLocalizacaoPorIntervaloDeHoras(0)">Ultima</a>
+                        <a class="button button-small icon-left ion-search" ng-click="buscarLocalizacaoPorIntervaloDeHoras(1)">1 Hora</a>
+                        <a class="button button-small icon-left ion-search" ng-click="buscarLocalizacaoPorIntervaloDeHoras(3)">3 Horas</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-90">
+                    <div class="info_rastreado">
+
+                        <div>
+                            <span class="span_info_rastreado">
+                                <i class="fa fa-circle-o-notch"> Status: </i>
+                            </span>
+                            <strong> {{'estado_veiculo_'+veiculoAtual.estado_veiculo | translate}} </strong>
+                        </div>
+
+                        <div>
+                            <span class="span_info_rastreado">
+                                <i class="fa fa-calendar"> Data: </i>
+                                <strong>{{veiculoAtual.data_comunicacao}}</strong>
+                            </span>
+                        </div>
+
+                        <div>
+                            <span class="span_info_rastreado">
+                                <i class="fa fa-tachometer"> Velocidade: </i>
+                                <strong>{{veiculoAtual.velocidade}} km/h</strong>
+                            </span>
+                        </div>
+
+                        <div ng-show="veiculoAtual.endereco">
+                            <span class="span_info_rastreado">
+                                <i class="fa fa-map-marker"> Endereço: </i>
+                             {{veiculoAtual.endereco}}
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="info_rastreado">
+                        <a class="btn btn-default" target="_blank" href="https://www.google.com/maps/search/{{veiculoAtual.latitude}},{{veiculoAtual.longitude}}" data-toggle="tooltip" data-placement="bottom" title="Mostrar no google maps"><i class="fa fa-google fa-2x"></i></a>
+                        <a class="btn btn-default" target="_blank" href="http://maps.google.com/maps?q=&amp;layer=c&amp;cbll={{veiculoAtual.latitude}},{{veiculoAtual.longitude}}" data-toggle="tooltip" data-placement="bottom" title="Mostrar no Google Street View"><i class="fa fa-street-view fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ion-item>
+            <ion-scroll direction="x">
+                <div style='display: inline-block; margin: 10px; text-align: center;'>
+                    <div class="rastreado-item" ng-click="buscarUltimaPosicaoDeVeiculos()">
+                        <img ng-src="img/logation-icon.png" class="rastreado-img">
+                        <p>TODOS</p>
+                    </div>
+                </div>
+                <div ng-repeat="rastreado in rastreados" style='display: inline-block; margin: 10px; text-align: center;'>
+                    <div class="rastreado-item" ng-click="carregarInformacoesVeiculo(rastreado.id)">
+                        <img ng-src="img/street-view.svg" class="rastreado-img">
+                        <p>{{rastreado.placa}}</p>
+                    </div>
+                </div>
+            </ion-scroll>
+        </ion-item>
+    </ion-content>
+</ion-view>

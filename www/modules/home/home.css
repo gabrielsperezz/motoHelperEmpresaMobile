@@ -1,0 +1,160 @@
+.card.home .item {
+    padding: 5px;
+}
+
+.item-user{
+    background-color: #ffffff8a !important;
+    border-color: #000 !important;
+}
+
+.item{
+    background-color: #ffffff8a;
+}
+
+.card, .list-inset {
+    background-color: #0000001f !important;
+}
+
+.setores-contador {
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    margin-right: 0.8em;
+}
+
+.setores-contador > .icon {
+    position: absolute;
+    z-index: 1;
+    font-size: 1.5em
+}
+
+.setores-contador .contador {
+    position: absolute;
+    z-index: 2;
+    color: #fff;
+    background-color: #000;
+    right: -40%;
+    border-radius: 3.5em;
+    width: 85%;
+    top: 20%;
+    font-size: 0.8em;
+}
+
+@keyframes blink {
+    0% {
+        color: red;
+    }
+    100% {
+        color: grey;
+    }
+}
+
+@-webkit-keyframes blink {
+    0% {
+        color: red;
+    }
+    100% {
+        color: grey;
+    }
+}
+
+.blink {
+    -webkit-animation: blink 0.5s linear infinite;
+    -moz-animation: blink 0.5s linear infinite;
+    animation: blink 0.5s linear infinite;
+}
+
+.cor-coacao {
+    color: DarkOrange;
+}
+
+.disparo-acidental {
+    color: #008B45;
+}
+
+.icon.ion-ios-bolt.consumo-icon {
+    font-size: 5em;
+    color: #ffcc00;
+}
+
+.consumo-valor-economizado {
+    font-size: 1.5em;
+    color: #000;
+    font-weight: bold;
+}
+
+.consumo-info-text {
+    font-size: 0.8em;
+    color: #000;
+}
+
+.consumo-title {
+    font-size: 1.2em;
+    color: #000;
+}
+
+.consumo-gasto {
+    color: #D32F2F;
+}
+
+.consumo-economia {
+    color: #388E3C;
+}
+
+#leaflet-map {
+    width: 100%;
+    height: 500px;
+}
+
+.marker_div{
+    margin-left: 20px;
+    margin-top: -20px;
+    width: 100px;
+}
+
+.marker_div span {
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    padding-left: 20%;
+    padding-right: 20%;
+    white-space: nowrap;
+}
+
+.marker_div_red{
+    background-color: #d63e2a;
+}
+
+.marker_div_blue{
+    background-color: #38a9db;
+}
+
+.marker_div_green{
+    background-color: #70ae26;
+}
+
+.marker_div_white{
+    background-color: #fbfbfb;
+}
+
+
+.marker_div_white span, .marker_div_white .icon-white{
+    color: #575757 !important;
+}
+
+.marker_div_gray{
+    background-color: #575757;
+}
+
+.marker_div_black{
+    background-color: #000000;
+}
+
+.marker_div_darkgreen{
+    background-color: #728225;
+}
+
+ion-content {
+    background-color: #000c;
+}

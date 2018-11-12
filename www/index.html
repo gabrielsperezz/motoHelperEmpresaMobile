@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, minimum-scale=1, viewport-fit=cover">
+    <title></title>
+
+
+    <link href="css/multiModule.css" rel="stylesheet">
+    <link href="css/customizacao.css" rel="stylesheet">
+    <link href="modules/login/login.css" rel="stylesheet">
+    <link href="modules/home/home.css" rel="stylesheet">
+    <link href="modules/menu/menu.css" rel="stylesheet">
+    <link href="lib/ion-gallery/dist/ion-gallery.css" rel="stylesheet">
+    <link href="lib/angularjs-slider/dist/rzslider.css" rel="stylesheet"/>
+
+
+    <!-- compiled css output -->
+    <link href="css/ionic.app.css" rel="stylesheet">
+
+    <!-- arquivos da lib lockScreen -->
+    <link href='lib/patternLock/patternLock.css' rel='stylesheet' type='text/css'/>
+    <script src='lib/jquery/dist/jquery.js'></script>
+    <script src='lib/patternLock/patternLock.min.js'></script>
+    <script src='lib/paho-client/dist/paho-mqtt.js'></script>
+
+    <!--Arquivos do leaflet -->
+    <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="lib/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+
+
+    <script src='lib/leaflet/dist/leaflet-src.js'></script>
+    <script src='lib/leaflet/dist/leaflet.js'></script>
+    <script src='lib/leaflet-ant-path/dist/leaflet-ant-path.js'></script>
+    <script src='lib/leaflet-spin/leaflet.spin.min.js'></script>
+    <script src='lib/Leaflet.awesome-markers/dist/leaflet.awesome-markers.min.js'></script>
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/prototypejs/dist/prototype.min.js"></script>
+    <script src="lib/winstore-jscompat.js"></script>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/angular-translate/angular-translate.js"></script>
+    <script src="lib/ion-gallery/dist/ion-gallery.js"></script>
+    <script src="lib/moment/min/moment-with-locales.min.js"></script>
+    <script src="lib/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+
+    <script src="lib/angularjs-slider/dist/rzslider.min.js"></script>
+    <script src="lib/ion-datetime-picker/release/ion-datetime-picker.min.js"></script>
+    <link href="lib/ion-datetime-picker/release/ion-datetime-picker.min.css" rel="stylesheet">
+    <!-- cordova script (this will be a 404 during development) -->
+
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>
+
+    <script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="lib/videogular/videogular.min.js"></script>
+    <script src="lib/videogular-hls/vg-hls.min.js"></script>
+    <script src="lib/videogular-controls/vg-controls.min.js"></script>
+    <script src="lib/videogular-buffering/vg-buffering.min.js"></script>
+    <script src="lib/videogular-poster/vg-poster.min.js"></script>
+    <script src="lib/ion-datetime-picker/release/ion-datetime-picker.min.js"></script>
+    <link href="lib/ion-datetime-picker/release/ion-datetime-picker.min.css" rel="stylesheet">
+    
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/filters/padleft.js"></script>
+    <script src="js/filters/motohelperCurrencyFilter.js"></script>
+    <script src="js/filters/iconeCenarios.js"></script>
+
+    <script src="js/services/serviceAuxiliar.js"></script>
+    <script src="js/services/loading.js"></script>
+    <script src="js/services/stackedPopUpService.js"></script>
+    <script src="js/services/serialize.js"></script>
+    <script src="js/services/tokenService.js"></script>
+    <script src="js/services/logoff.js"></script>
+    <script src="js/services/toast.js"></script>
+    <script src="js/services/checarLogin.js"></script>
+    
+    <script src="js/services/comando/pollingComando.js"></script>
+    <script src="js/services/comando/statusComando.js"></script>
+    <script src="js/services/comando/nomeaSetores.js"></script>
+
+    <script src="js/services/loginPattern/loginPattern.js"></script>
+
+    <script src="js/factory/request/ARequest.js"></script>
+    <script src="js/factory/request/loginRequest.js"></script>
+    <script src="js/factory/request/getGates.js"></script>
+    <script src="js/factory/request/linguagem.js"></script>
+    <script src="js/factory/request/postLembrete.js"></script>
+    <script src="js/factory/request/getEnergiaForm.js"></script>
+    <script src="js/factory/request/editaCenario.js"></script>
+    <script src="js/factory/request/getModulos.js"></script>
+    <script src="js/factory/request/cadastrarLoginRequest.js"></script>
+
+    <script src="js/factory/localStorage.js"></script>
+    <script src="js/factory/nativeStorage.js"></script>
+    <script src="js/factory/authInterceptor.js"></script>
+
+    <script src="js/directives/reponsiveScrollContainer.js"></script>
+    <script src="js/directives/formattedTime.js"></script>
+    <script src="js/directives/ion-pullup.js"></script>
+    <script src="js/directives/alertaCard/alerta.js"></script>
+
+    <script src="js/constant/traducao.js"></script>
+    <script src="js/constant/constants.js"></script>
+
+    <script src="modules/menu/menu.js"></script>
+    <script src="modules/menu/storage/menuStorage.js"></script>
+    <script src="modules/home/home.js"></script>
+    <script src="modules/home/homeService.js"></script>
+    <script src="modules/home/storage/homeStorage.js"></script>
+    <script src="modules/login/loginController.js"></script>
+    <script src="modules/rastreados/rastreados.js"></script>
+    <script src="modules/rastreados/rastreadosService.js"></script>
+    <script src="modules/rastreados/rastreadosStorage/rastreadosStorage.js"></script>
+  </head>
+
+  <body ng-app="motohelper">
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<ion-view>
+    <ion-nav-title>Início</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-android-checkmark-circle" menu-toggle="right"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher pulling-text="Atualizando" on-refresh="doRefresh()">
+        </ion-refresher>
+
+
+        <div id="leaflet-map"></div>
+
+
+        <button class="button button-block button-dark " ng-show="buscandoServicos" ng-click="solicitarServico()">Solicitar serviço</button>
+
+        <div class="card home" ng-show="!buscandoServicos">
+            <div class="item item-text-wrap center item-user">
+                <div class="row">
+                    <div class="col col-20 no-padding-bottom-top"><i style="font-size: 54px;" class="fa fa-motorcycle consumo-icon"></i></div>
+                    <div class="col col-70 no-padding-bottom-top">
+                        <div class="row no-padding-bottom-top">
+                            <div class="col consumo-title">
+                                PLACA: {{motoboy.placa}}
+                            </div>
+                        </div>
+                        <div class="row no-padding-bottom-top">
+                            <div class="col veiculo-info">
+                                VEICULO: {{motoboy.modelo}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item item-text-wrap center item-user">
+                <div class="row font-xs">
+                    <div class="col no-padding" style="text-align: left;"><b>Nome</b></div>
+                    <div class="col no-padding" style="text-align: center;"><b>{{motoboy.nome}}</b></div>
+                </div>
+            </div>
+            <div class="item item-text-wrap center item-user">
+                <div class="row font-xs">
+                    <div class="col no-padding" style="text-align: left;"><b>Endereço Atual</b></div>
+                    <div class="col no-padding" style="text-align: center;"><b>{{motoboy.ultimaPosicao}}</b></div>
+                </div>
+            </div>
+            <button class="button button-block button-dark" ng-click="finalizarServico()">Finalizar Serviço</button>
+        </div>
+
+    </ion-content>
+</ion-view>

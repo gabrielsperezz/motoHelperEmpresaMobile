@@ -1,0 +1,112 @@
+.font-size-md{
+    padding: 4% 10% 4% 10%;
+    font-size: 3.5em;
+}
+.font-size-xs{
+    padding: 4% 10% 4% 10%;
+    font-size: 2em;
+}
+.gray{
+    color: gray;
+}
+.text-right{
+	text-align: right;
+}
+.text-center{
+	text-align: center;
+}
+.font-minima{
+    font-size: 0.5em;
+}
+.font-lg{
+    font-size: 3em;
+}
+.font-md{
+    font-size: 2em;
+}
+.font-sm{
+    font-size: 1.5em;
+}
+.font-xs{
+    font-size: 0.7em;
+}
+.top{
+    margin-top: 10%;
+}
+.center-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.4;
+}
+/*css da senha para desbloqueio do aplicativo*/
+.patt-holder{
+    background: #FFF !important;
+}
+
+.patt-dots{
+    background: #000 !important;
+}
+.patt-lines{
+    background:rgba(127,127,127,.7) !important;
+}
+.popup-buttons .button.activated {
+    background-color: #111111;
+}
+.picture-information{
+    position: absolute;
+    right: 20px;
+    font-size: 2em;
+}
+.min-padding {
+    padding: 1px !important;
+}
+
+.no-padding{
+    padding:0;
+}
+.no-padding-bottom-top{
+    padding:0 5px 0 5px;
+}
+
+.errror{
+    color:red !important;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.profile-item {
+    text-align: center;
+}
+
+.profile-picture {
+    border: 4px solid rgba(0, 0, 0, 0.25);
+    padding: 3px;
+    border-radius: 100%;
+    box-sizing: content-box;
+    margin: 0 auto;
+    width: 128px;
+    height: 128px;
+    overflow: hidden;
+}
+
+.col.col-33.escolha-icone {
+    text-align:  center;
+    font-size:  4em;
+}
+
+a.col.col-33.escolha-icone.borda {
+    border: solid;
+}
+
+.list-cenario .item-complex{
+    padding-right: 0 !important;
+}
+
+.list-lembrete .item-complex .item-content {
+    padding: 0px !important;
+}
+
+.color-play-home {
+    color: #484848;
+}

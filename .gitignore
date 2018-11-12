@@ -1,0 +1,39 @@
+# Specifies intentionally untracked files to ignore when using Git
+
+# http://git-scm.com/docs/gitignore
+
+node_modules/
+platforms/
+plugins/
+resources/android/*
+
+# Ionic
+bin/
+bld/
+merges/
+
+platforms/
+plugins/
+node_modules/
+temp/
+
+# Mac Files
+*.DS_Store
+
+$Temp files
+*.log
+*.swp
+
+#Ide files
+.idea/
+
+# Project
+www/lib/*
+# Lib nao presente nem no bower nem no npm
+!www/lib/winstore-jscompat.js
+!www/lib/ion-gallery/
+.vs/
+*.jsproj
+*.jsproj.user
+*.sln
+taco.json

@@ -1,0 +1,65 @@
+.img-logo{
+	width: 300px;
+	height: auto;
+	margin-top: 35%;
+}
+input.color-white{
+	color: #ffffff;
+}
+.color-white{
+	color: #fff;
+}
+.fundo-tema{
+	background-color: #212121;
+}
+
+.button-radio{
+	border-radius: 30px !important;
+}
+
+.login-box .item{
+	border-color: #212121;
+	background-color: #ffffff17;
+}
+
+.text-informa-login{
+	margin-top: 10%;
+	text-align: justify;
+}
+
+
+/* bar bonitinho */
+.barDestaque {
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+.barDestaque:before, .barDestaque:after {
+	content: '';
+	height: 2px; 
+	width: 0;
+	bottom: 1px;
+	position: absolute;
+	background: red; 
+	transition: all 0.2s ease;
+}
+
+.barDestaque:before { left: 50%; }
+
+.barDestaque:after { right: 50%; }
+
+
+/* active */
+
+input:focus ~ .barDestaque:before, input:focus ~ .barDestaque:after { width: 50%; }
+
+.login__logo {
+  text-align: center;
+  color: rgb(124,124,124);
+  font-size: 10em;
+}
+
+.input-label{
+	color:  #aaa !important;
+}
