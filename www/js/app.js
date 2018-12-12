@@ -65,13 +65,4 @@ angular.module('motohelper', ['ionic', 'ngCordova', 'pascalprecht.translate', 'i
             }
         })
 
-        .state('app.rastreados', {
-            url: '/rastreados',
-            views: {
-                'menuContent':{
-                    templateUrl: 'modules/rastreados/rastreados.html',
-                    controller: "rastreadosCtrl"
-                }
-            }
-        })
 });

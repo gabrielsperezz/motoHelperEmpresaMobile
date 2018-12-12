@@ -1,13 +1,7 @@
 angular.module('motohelper')
 
 .controller('loginCtrl', function($scope, $state, $ionicModal, $ionicLoading, constant, auxiliar,
-    loading, loginRequest, $ionicPopup, $ionicHistory, tokenService, $localStorage, cadastrarLoginRequest){
-
-    $ionicModal.fromTemplateUrl('modules/login/modalLogin.html', {
-        scope: $scope
-    }).then(function(modal) {
-        $scope.modal = modal;
-    });
+    loading, loginRequest, $ionicPopup, $ionicHistory, tokenService, $localStorage){
 
     $ionicHistory.clearCache();
     $ionicHistory.clearHistory();
@@ -17,18 +11,10 @@ angular.module('motohelper')
         password: null
     };
 
-    $scope.novousuario = {
-        login : null,
-        senha: null,
-        nome : null,
-        email : null
-    }
-
     $scope.openModal = function() {
         $scope.modal.show();
     };
 
-    console.log(tokenService.getToken());
     $scope.loginUsuario = function (telefone) {
 
         loading.show('carregando');
@@ -79,38 +65,6 @@ angular.module('motohelper')
                 default:
                     auxiliar.erro(erro.status);
             };
-        });
-    };
-
-    $scope.cadastrarUsuario = function (novoUsuario) {
-
-        loading.show('carregando');
-
-        cadastrarLoginRequest.createRequest(novoUsuario).getRequest().then(function (response) {
-            $scope.modal.hide();
-            $ionicPopup.alert({
-                template : response.data.msg,
-                buttons: [{
-                    text: "Ok",
-                    type: 'button-dark'
-                }]
-            });
-            $scope.usuario.username = response.data.login.login;
-            $ionicLoading.hide();
-        }, function (erro) {
-            $ionicLoading.hide();
-            var msgErrors = "";
-            console.log(erro)
-            angular.forEach(erro.data.erros, function(value){
-                msgErrors += "<br>" + value;
-            })
-            $ionicPopup.alert({
-                template : msgErrors,
-                buttons: [{
-                    text: "Ok",
-                    type: 'button-dark'
-                }]
-            });
         });
     };
 

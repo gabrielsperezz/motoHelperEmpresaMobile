@@ -12,12 +12,6 @@ angular.module('motohelper')
 		return token;
 	};
 
-    this.resetPromise = function (){
-    	firstDeferred = $q.defer();
-        firstDeferred.resolve();
-    	refreshTokenDeferred = firstDeferred;
-    }
-
     this.setToken = function (accessToken) {
 
         $localStorage.set(constant.TOKEN, accessToken);

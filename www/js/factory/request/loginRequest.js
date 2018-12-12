@@ -6,7 +6,7 @@ angular.module('motohelper')
                 'Content-Type': 'application/x-www-form-urlencoded',
             };
             parameters = serialize.toUrlParams(usuario);
-            return new ARequest('/api/mobile/login', headers, 'POST', parameters);
+            return new ARequest('/api/mobile/login/motoboy', headers, 'POST', parameters);
         },
     }
 });

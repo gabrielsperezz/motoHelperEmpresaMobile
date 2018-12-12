@@ -1,15 +1,28 @@
 angular.module('motohelper')
-.controller('homeCtrl', function($scope, homeService, loading, $ionicLoading, $ionicModal) {
+.controller('homeCtrl', function($scope, homeService, loading, $ionicLoading, $ionicModal,$localStorage, corridaRequest, constant, homeStorage) {
+
+    var client = null;
+
+    function initiVariaveis() {
+        $scope.corridas = [];
+        $scope.corridaAtual =  null;
+        $scope.rotas = null;
+    }
+
+    conectaComMQTT(null);
+
+    initiVariaveis();
 
     function atualizaTemplate(){
-        console.log('atualizado');
+        homeService.initMapa($localStorage.getObject('user_motoboy').posicao);
+        homeService.setMarkerHouse($localStorage.getObject('user_motoboy').posicao);
     }
 
     $scope.$on('atualizarTela', function() {
         atualizaTemplate();
     });
 
-    $ionicModal.fromTemplateUrl('modules/home/modalFinalizarServico.html', {
+    $ionicModal.fromTemplateUrl('modules/home/modalListaServicos.html', {
         scope: $scope
     }).then(function(modal) {
          $scope.modal = modal;
@@ -17,54 +30,126 @@ angular.module('motohelper')
 
     $scope.buscandoServicos = true;
 
-    homeService.initMapa({latitude : '-22.207151', longitude : '-49.681706'});
-
-    var localizacoesFake = [
-        {
-            latitude : '-22.220743', longitude : '-49.660133', placa : "KDJ-1311", modelo : 'HONDA - CBTWISTER 250F', cor : 'gray'
-        },
-        {
-            latitude : '-22.211135', longitude : '-49.678805', placa : "JDM-1091", modelo : 'YAMAHA - MT03', cor : 'blue'
-        },
-        {
-            latitude : '-22.2061    40', longitude : '-49.665539', placa : "VMR-4141", modelo : 'YAMAHA - XJ6', cor : 'darkgreen'
-        },
-        {
-            latitude : '-22.214420', longitude : '-49.660226', placa : "KMA-1491", modelo : 'HONDA - HORNET 650F', cor : 'green'
-        },
-        {
-            latitude : '-22.207767', longitude : '-49.658558', placa : "MNO-1944", modelo : 'HONDA - CG150', cor : 'red'
-        }
-    ]
-    homeService.setMarkers(localizacoesFake)
-    homeService.setMarkerHouse({latitude : '-22.207151', longitude : '-49.681706'})
-
-    atualizaTemplate();
-
-    $scope.solicitarServico = function () {
-        loading.show('Buscando motoboys');
-        $scope.buscandoServicos = false;
+    $scope.ficarDisponivel = function () {
+        loading.show('Procurando clientes');
         setTimeout(function () {
+            atualizaListaDeCorridas();
+        },2000);
+
+    };
+
+    function atualizaListaDeCorridas() {
+        corridaRequest.ficarDisponivel().getRequest().then(function (data) {
             $ionicLoading.hide();
-            var objServico = {
-                possicaoCliente : {latitude : '-22.207151', longitude : '-49.681706'},
-                motoboy: {
-                    nome : "Paulo", latitude : '-22.220743', longitude : '-49.660133', placa : "KDJ-1311", modelo : 'HONDA - CBTWISTER 250F', cor : 'gray', ultimaPosicao: "Garça, São Paulo, Rua Carlos Ferrari Nº941"
+            iniciaListaDeBuscaPorCorridas(data.data);
+        });
+    }
+
+    function iniciaListaDeBuscaPorCorridas(corridas){
+        $scope.corridas = corridas;
+        setTimeout(function () {
+           $scope.$apply();
+        },0);
+        $scope.modal.show();
+    }
+
+
+    $scope.aceitarCorrida = function(idCorrida){
+        corridaRequest.aceitarCorrida(idCorrida).getRequest().then(function (data) {
+            loading.show('Preparando corrida');
+            $scope.corridaAtual = data.data;
+            $scope.buscandoServicos = false;
+            $scope.modal.hide();
+            $localStorage.setObject("corrida_atual", $scope.corridaAtual);
+            setCorrida();
+        });
+    };
+
+    function setCorrida(){
+        corridaRequest.buscarRotaCorrida($scope.corridaAtual.id_usuario).getRequest().then(function (data) {
+            conectaComMQTT($scope.corridaAtual.id);
+            $scope.rotas = data.data;
+            setTimeout(function () {
+                $scope.$apply();
+            },0);
+            setNovoServico($scope.rotas.rotas_clean, $scope.rotas);
+            loading.hide();
+        });
+    }
+
+    setNovoServico = function (posicoes, rotasInfo) {
+        homeService.setCorridaEmAndamento(posicoes, rotasInfo)
+    };
+    
+    $scope.cancelarServico = function (idOcorrencia) {
+
+        corridaRequest.cancelarCorrida(idOcorrencia).getRequest().then(function () {
+            finalizaOcorrencia();
+        });
+    };
+
+    function finalizaOcorrencia() {
+
+        $scope.buscandoServicos = true;
+        $scope.corridaAtual = null;
+        $localStorage.setObject("corrida_atual", null);
+        initiVariaveis();
+        atualizaTemplate();
+    }
+
+    if($localStorage.getObject("corrida_atual") != null){
+        loading.show('Preparando corrida');
+        homeService.initMapa($localStorage.getObject('user_motoboy').posicao);
+        $scope.corridaAtual = $localStorage.getObject("corrida_atual");
+        $scope.buscandoServicos = false;
+        setCorrida();
+    }else{
+        atualizaTemplate();
+    }
+
+    function conectaComMQTT(idCorrida) {
+        client = new Paho.MQTT.Client(constant.MQTT_URL, Number(constant.MQTT_PORTA), "", String(homeStorage.geraIdMQQT()));
+        client.onConnectionLost = onConnectionLost;
+        client.onMessageArrived = onMessageArrived;
+        var options = {
+            timeout: 3,
+            onSuccess: function () {
+                if(idCorrida != null){
+                    client.subscribe('corrida/'+idCorrida+'/#', {qos: 2});
+                }
+                client.subscribe('corridas/busca', {qos: 2});
+            },
+            onFailure: function (mensagem) {
+                console.log('[MQTT] ~ Desconectado ~');
+            },
+            reconnect: true,
+            useSSL: true,
+            userName: constant.MQTT_USERNAME,
+            password: constant.MQTT_PASSWORD
+        };
+
+        client.connect(options);
+
+        function onConnectionLost(responseObject) {
+            if (responseObject.errorCode !== 0) {
+                console.log("onConnectionLost:"+responseObject.errorMessage);
+            }
+        }
+
+        function onMessageArrived(message) {
+            if (message != null) {
+                console.log(message);
+                if(message.topic.match('/posicoes')){
+                    setCorrida();
+                }
+                if(message.topic.match('/finalizar')){
+                    $scope.cancelarServico();
+                }
+                if(message.topic.match('corridas/busca')){
+                    atualizaListaDeCorridas();
                 }
             }
-
-            $scope.motoboy = objServico.motoboy;
-
-            setNovoServico(objServico)
-        }, 1000);
-    }
-
-    setNovoServico = function (posicoes) {
-        homeService.setCorridaEmAndamento(posicoes)
-    }
-    
-    $scope.finalizarServico = function (servico) {
-        $scope.modal.show();
+        }
     };
 
 });

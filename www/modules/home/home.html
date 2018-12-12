@@ -14,41 +14,46 @@
         <div id="leaflet-map"></div>
 
 
-        <button class="button button-block button-dark " ng-show="buscandoServicos" ng-click="solicitarServico()">Solicitar serviço</button>
+        <div ng-show="buscandoServicos">
+            <button class="button button-block button-dark" ng-click="ficarDisponivel()">Ficar disponivel</button>
 
-        <div class="card home" ng-show="!buscandoServicos">
-            <div class="item item-text-wrap center item-user">
-                <div class="row">
-                    <div class="col col-20 no-padding-bottom-top"><i style="font-size: 54px;" class="fa fa-motorcycle consumo-icon"></i></div>
-                    <div class="col col-70 no-padding-bottom-top">
-                        <div class="row no-padding-bottom-top">
-                            <div class="col consumo-title">
-                                PLACA: {{motoboy.placa}}
-                            </div>
-                        </div>
-                        <div class="row no-padding-bottom-top">
-                            <div class="col veiculo-info">
-                                VEICULO: {{motoboy.modelo}}
-                            </div>
-                        </div>
+            <div class="row">
+                <div class="col">
+                    <div style="border-color: #ff00004f; border-bottom-style: solid; margin-bottom: -6px; border-bottom-width: 1px;">
+                        <p style="text-align:center; margin: 0; color: #ff0000d9;">Existem 6 usúarios procurando por serviços neste momento </p>
                     </div>
                 </div>
             </div>
 
+        </div>
+
+        <div class="card home" ng-show="!buscandoServicos">
+
             <div class="item item-text-wrap center item-user">
                 <div class="row font-xs">
                     <div class="col no-padding" style="text-align: left;"><b>Nome</b></div>
-                    <div class="col no-padding" style="text-align: center;"><b>{{motoboy.nome}}</b></div>
+                    <div class="col no-padding" style="text-align: center;"><b>{{rotas.final.nome}}</b></div>
                 </div>
             </div>
             <div class="item item-text-wrap center item-user">
                 <div class="row font-xs">
                     <div class="col no-padding" style="text-align: left;"><b>Endereço Atual</b></div>
-                    <div class="col no-padding" style="text-align: center;"><b>{{motoboy.ultimaPosicao}}</b></div>
+                    <div class="col no-padding" style="text-align: center;"><b>{{rotas.final.endereco}}</b></div>
                 </div>
             </div>
-            <button class="button button-block button-dark" ng-click="finalizarServico()">Finalizar Serviço</button>
+            <div class="item item-text-wrap center item-user">
+                <div class="row font-xs">
+                    <div class="col no-padding" style="text-align: left;"><b>Tempo estimado</b></div>
+                    <div class="col no-padding" style="text-align: center;"><b>{{rotas.tempo_estimado/60 | number:0}}:{{rotas.tempo_estimado%60 | number:0}}</b></div>
+                </div>
+            </div>
+            <div class="item item-text-wrap center item-user">
+                <div class="row font-xs">
+                    <div class="col no-padding" style="text-align: left;"><b>Distância</b></div>
+                    <div class="col no-padding" style="text-align: center;"><b>{{rotas.distancia/1000 | number:2}} Km</b></div>
+                </div>
+            </div>
+            <button class="button button-block button-dark" ng-click="cancelarServico(corridaAtual.id)">Cancelar Serviço</button>
         </div>
-
     </ion-content>
 </ion-view>
