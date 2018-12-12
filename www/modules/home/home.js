@@ -7,6 +7,8 @@ angular.module('motohelper')
         $scope.corridas = [];
         $scope.corridaAtual =  null;
         $scope.rotas = null;
+        $scope.buscandoServicos = true;
+        $scope.disponivel = false;
     }
 
     conectaComMQTT(null);
@@ -28,8 +30,6 @@ angular.module('motohelper')
          $scope.modal = modal;
     });
 
-    $scope.buscandoServicos = true;
-
     $scope.ficarDisponivel = function () {
         loading.show('Procurando clientes');
         setTimeout(function () {
@@ -41,6 +41,7 @@ angular.module('motohelper')
     function atualizaListaDeCorridas() {
         corridaRequest.ficarDisponivel().getRequest().then(function (data) {
             $ionicLoading.hide();
+            $scope.disponivel = true;
             iniciaListaDeBuscaPorCorridas(data.data);
         });
     }
@@ -59,6 +60,7 @@ angular.module('motohelper')
             loading.show('Preparando corrida');
             $scope.corridaAtual = data.data;
             $scope.buscandoServicos = false;
+            $scope.disponivel = false;
             $scope.modal.hide();
             $localStorage.setObject("corrida_atual", $scope.corridaAtual);
             setCorrida();
@@ -90,8 +92,6 @@ angular.module('motohelper')
 
     function finalizaOcorrencia() {
 
-        $scope.buscandoServicos = true;
-        $scope.corridaAtual = null;
         $localStorage.setObject("corrida_atual", null);
         initiVariaveis();
         atualizaTemplate();
@@ -146,7 +146,9 @@ angular.module('motohelper')
                     $scope.cancelarServico();
                 }
                 if(message.topic.match('corridas/busca')){
-                    atualizaListaDeCorridas();
+                    if($scope.disponivel){
+                        atualizaListaDeCorridas();
+                    }
                 }
             }
         }

@@ -32,6 +32,14 @@ angular.module('motohelper')
 
                 return new ARequest('/api/mobile/rotas/'+$localStorage.getObject('user_motoboy').id+'/' + idCliente, headers, 'GET');
             },
+            buscarUserInfo: function () {
+                var token = tokenService.getToken();
+                var headers = {
+                    'token': token
+                };
+
+                return new ARequest('/api/mobile/user/me', headers, 'GET');
+            },
             buscarHistoricoDeCorridas: function () {
                 var token = tokenService.getToken();
                 var headers = {
